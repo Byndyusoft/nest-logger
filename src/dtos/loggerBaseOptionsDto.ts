@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-import { IsNotEmpty,IsString } from "class-validator";
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class LoggerBaseOptionsDto {
-    @IsString()
-    @IsNotEmpty()
-    public readonly configEnv!: string;
+  @IsString()
+  @IsNotEmpty()
+  public readonly configEnv!: string;
 
+  @IsString()
+  @IsNotEmpty()
+  public readonly name!: string;
 
-    @IsString()
-    @IsNotEmpty()
-    public readonly name!: string;
-
-    @IsString()
-    @IsNotEmpty()
-    public readonly version!: string;
+  @IsString()
+  @IsNotEmpty()
+  public readonly version!: string;
 }

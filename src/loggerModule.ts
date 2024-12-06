@@ -15,23 +15,21 @@
  */
 
 import { TRegisterAsyncOptions } from "@byndyusoft/nest-dynamic-module";
-import { LoggerModule as PinoLoggerModule} from "@byndyusoft/nest-pino";
+import { LoggerModule as PinoLoggerModule } from "@byndyusoft/nest-pino";
 import {
   PinoHttpLoggerOptionsBuilder,
   PinoLoggerFactory,
   PinoLoggerOptionsBuilder,
 } from "@byndyusoft/pino-logger-factory";
-import { DynamicModule,Module } from "@nestjs/common";
+import { DynamicModule, Module } from "@nestjs/common";
 import { plainToClass } from "class-transformer";
-import { Options as PinoOptions } from 'pino-http';
+import { Options as PinoOptions } from "pino-http";
 
-import {LoggerOptionsDto} from './dtos/loggerOptionsDto'
+import { LoggerOptionsDto } from "./dtos/loggerOptionsDto";
 
 // We need increase nest-pino LoggerModule topological level for correct middlewares register
 @Module({})
-
 export class LoggerModule {
-
   public static forRoot(rawLoggerOptions: LoggerOptionsDto): DynamicModule {
     const loggerOptions = plainToClass(LoggerOptionsDto, rawLoggerOptions);
     return {
@@ -44,7 +42,9 @@ export class LoggerModule {
     };
   }
 
-  public static forRootAsync(options: TRegisterAsyncOptions<LoggerOptionsDto>): DynamicModule {
+  public static forRootAsync(
+    options: TRegisterAsyncOptions<LoggerOptionsDto>,
+  ): DynamicModule {
     return {
       module: LoggerModule,
       imports: [
@@ -52,10 +52,13 @@ export class LoggerModule {
           inject: options.inject,
           useFactory(...args: unknown[]) {
             const rawLoggerOptions = options.useFactory?.(...args);
-            const loggerOptions = plainToClass(LoggerOptionsDto, rawLoggerOptions);
+            const loggerOptions = plainToClass(
+              LoggerOptionsDto,
+              rawLoggerOptions,
+            );
             return {
               pinoHttp: LoggerModule.getPinoOptions(loggerOptions),
-            }
+            };
           },
         }),
       ],
@@ -63,28 +66,23 @@ export class LoggerModule {
   }
 
   private static getPinoOptions(loggerOptions: LoggerOptionsDto): PinoOptions {
-
-    const pinoLoggerOptions = new PinoLoggerOptionsBuilder()
+    const pinoLoggerOptions = new PinoLoggerOptionsBuilder();
     if (loggerOptions.base) {
       pinoLoggerOptions.withBase({
         name: loggerOptions.base.name,
         version: loggerOptions.base.version,
         env: loggerOptions.base.configEnv,
-      })
+      });
     }
     if (loggerOptions.level !== undefined) {
-      pinoLoggerOptions.withLevel(loggerOptions.level)
+      pinoLoggerOptions.withLevel(loggerOptions.level);
     }
     if (loggerOptions.pretty) {
-      pinoLoggerOptions.withPrettyPrint(loggerOptions.pretty)
+      pinoLoggerOptions.withPrettyPrint(loggerOptions.pretty);
     }
 
     return new PinoHttpLoggerOptionsBuilder()
-    .withLogger(
-      new PinoLoggerFactory().create(
-        pinoLoggerOptions.build()
-      ),
-    )
-    .build()
+      .withLogger(new PinoLoggerFactory().create(pinoLoggerOptions.build()))
+      .build();
   }
 }

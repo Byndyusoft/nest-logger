@@ -16,12 +16,11 @@
 
 import { LogLevel } from "@byndyusoft/pino-logger-factory";
 import { Type } from "class-transformer";
-import { IsBoolean,IsEnum, IsOptional } from "class-validator";
+import { IsBoolean, IsEnum, IsOptional } from "class-validator";
 
-import {LoggerBaseOptionsDto} from './loggerBaseOptionsDto'
+import { LoggerBaseOptionsDto } from "./loggerBaseOptionsDto";
 
 export class LoggerOptionsDto {
-
   @Type(() => LoggerBaseOptionsDto)
   @IsOptional()
   public readonly base?: LoggerBaseOptionsDto;
