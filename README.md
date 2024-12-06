@@ -57,7 +57,6 @@ LoggerModuleNew.forRootAsync({
     },
     level: configDto.logger.level,
     pretty: configDto.logger.pretty,
-
   })
 }),
 ```
