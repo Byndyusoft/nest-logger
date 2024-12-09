@@ -15,50 +15,71 @@ Logger module for NestJS apps based on Pino logger
 ## Install
 
 ```bash
-npm install @byndyusoft/nest-logger @byndyusoft/nest-pino @byndyusoft/nest-dynamic-module
+npm install @byndyusoft/nest-logger @byndyusoft/nest-dynamic-module
 ```
 
 or
 
 ```bash
-yarn add @byndyusoft/nest-logger @byndyusoft/nest-pino @byndyusoft/nest-dynamic-module
+yarn add @byndyusoft/nest-logger @byndyusoft/nest-dynamic-module
 ```
 
 ## Usage
 
-```typescript
-import { LoggerModuleNew, LogLevel } from "./logger";
+### Register instance Logger and LoggerErrorInterceptor
 
-LoggerModuleNew.forRoot({
-  base: {
-    configEnv: 'local',
-    name: 'root',
-    version: '0.0.0-development',
-  },
-  level: LogLevel.info,
-  pretty: true,
-}),
+```typescript
+import { Logger, LoggerErrorInterceptor } from "@byndyusoft/nest-logger";
+
+const logger = app.get(Logger);
+app.useLogger(logger);
+app.useGlobalInterceptors(new LoggerErrorInterceptor());
 ```
 
-## Usage Async
+## Register module LoggerModule
 
 ```typescript
-import { LoggerModuleNew } from "./logger";
+import { LoggerModule, LogLevel } from "@byndyusoft/nest-logger";
+
+@Module({
+  imports: [
+    LoggerModule.forRoot({
+      base: {
+        configEnv: "local",
+        name: "root",
+        version: "0.0.0-development",
+      },
+      level: LogLevel.info,
+      pretty: true,
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+## Or async register module LoggerModule
+
+```typescript
+import { LoggerModuleNew } from "@byndyusoft/nest-logger";
 import { ConfigDto } from "./config";
 import { PackageJsonDto } from "./packageJson";
 
-LoggerModuleNew.forRootAsync({
-  inject: [ConfigDto, PackageJsonDto],
-  useFactory: (configDto: ConfigDto, packageJson: PackageJsonDto) => ({
-    base: {
-      configEnv: configDto.configEnv,
-      name: packageJson.name,
-      version: packageJson.version,
-    },
-    level: configDto.logger.level,
-    pretty: configDto.logger.pretty,
-  })
-}),
+@Module({
+  imports: [
+    LoggerModule.forRootAsync({
+      inject: [ConfigDto, PackageJsonDto],
+      useFactory: (configDto: ConfigDto, packageJson: PackageJsonDto) => ({
+        base: {
+          configEnv: configDto.configEnv,
+          name: packageJson.name,
+          version: packageJson.version,
+        },
+        level: configDto.logger.level,
+        pretty: configDto.logger.pretty,
+      })
+    }),
+  ],
+})
 ```
 
 ## Maintainers

@@ -15,4 +15,5 @@
  */
 
 export { LoggerModule } from "./loggerModule";
+export { Logger, LoggerErrorInterceptor } from "@byndyusoft/nest-pino";
 export { LogLevel } from "@byndyusoft/pino-logger-factory";
