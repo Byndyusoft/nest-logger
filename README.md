@@ -15,13 +15,13 @@ Logger module for NestJS apps based on Pino logger
 ## Install
 
 ```bash
-npm install @byndyusoft/nest-logger
+npm install @byndyusoft/nest-logger @byndyusoft/nest-pino @byndyusoft/nest-dynamic-module
 ```
 
 or
 
 ```bash
-yarn add @byndyusoft/nest-logger
+yarn add @byndyusoft/nest-logger @byndyusoft/nest-pino @byndyusoft/nest-dynamic-module
 ```
 
 ## Usage
