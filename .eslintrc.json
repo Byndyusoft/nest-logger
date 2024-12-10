@@ -1,4 +1,15 @@
 {
   "root": true,
-  "extends": ["@byndyusoft/eslint-config/header-apache-2.0", "@byndyusoft/eslint-config/backend"]
+  "extends": ["@byndyusoft/eslint-config/header-apache-2.0", "@byndyusoft/eslint-config/backend"],
+  "rules": {
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "classProperty",
+        "modifiers": ["protected"],
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
+      }
+    ]
+  }
 }

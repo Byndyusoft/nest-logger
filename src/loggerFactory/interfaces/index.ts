@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Byndyusoft
+ * Copyright 2021 Byndyusoft
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export * from "./loggerFactory";
-export * from "./loggerModule";
+export * from "./pinoHttpLoggerFactoryInterface";
+export * from "./pinoLoggerFactoryInterface";

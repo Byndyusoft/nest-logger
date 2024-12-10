@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export * from "./loggerFactory";
-export * from "./loggerModule";
+export { LoggerModule } from "./loggerModule";
+export { Logger, LoggerErrorInterceptor } from "@byndyusoft/nest-pino";

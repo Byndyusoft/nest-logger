@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export * from "./loggerFactory";
-export * from "./loggerModule";
+export * from "./debugObjectSerializer";
+export * from "./jsonDebugObjectSerializer";

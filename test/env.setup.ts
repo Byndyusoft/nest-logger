@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Byndyusoft
+ * Copyright 2021 Byndyusoft
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-import { LogLevel } from "@byndyusoft/pino-logger-factory";
-import { Type } from "class-transformer";
-import { IsBoolean, IsEnum, IsOptional } from "class-validator";
+import os from "os";
 
-import { LoggerBaseOptionsDto } from "./loggerBaseOptionsDto";
+beforeEach(() => {
+  jest.useFakeTimers({
+    now: 1459875739796,
+  });
 
-export class LoggerOptionsDto {
-  @Type(() => LoggerBaseOptionsDto)
-  @IsOptional()
-  public readonly base?: LoggerBaseOptionsDto;
+  jest.spyOn(os, "hostname").mockReturnValue("host");
 
-  @IsBoolean()
-  @IsOptional()
-  public readonly pretty?: boolean;
+  Object.defineProperty(process, "pid", {
+    get() {
+      return 123456;
+    },
+  });
 
-  @IsEnum(LogLevel)
-  @IsOptional()
-  public readonly level?: LogLevel;
-}
+  process.env.npm_package_name = "name";
+  process.env.npm_package_version = "version";
+  process.env.NODE_ENV = "test";
+});

@@ -16,14 +16,15 @@
 
 import { TRegisterAsyncOptions } from "@byndyusoft/nest-dynamic-module";
 import { LoggerModule as PinoLoggerModule } from "@byndyusoft/nest-pino";
+import { DynamicModule, Module } from "@nestjs/common";
+import { plainToClass } from "class-transformer";
+import { Options as PinoOptions } from "pino-http";
+
 import {
   PinoHttpLoggerOptionsBuilder,
   PinoLoggerFactory,
   PinoLoggerOptionsBuilder,
-} from "@byndyusoft/pino-logger-factory";
-import { DynamicModule, Module } from "@nestjs/common";
-import { plainToClass } from "class-transformer";
-import { Options as PinoOptions } from "pino-http";
+} from "../loggerFactory";
 
 import { LoggerOptionsDto } from "./dtos/loggerOptionsDto";
 

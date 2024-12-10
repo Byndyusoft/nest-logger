@@ -14,5 +14,17 @@
  * limitations under the License.
  */
 
-export * from "./loggerFactory";
-export * from "./loggerModule";
+/*
+ * Returns a json representation of object for debugging.
+ * */
+export const jsonDebugObjectSerializer = (
+  debugJsonData: Record<string, unknown>,
+): Record<string, unknown> => {
+  const _debugJsonData: Record<string, unknown> = {};
+
+  for (const k of Object.keys(debugJsonData)) {
+    _debugJsonData[k] = JSON.stringify(debugJsonData[k]);
+  }
+
+  return _debugJsonData;
+};

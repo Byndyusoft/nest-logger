@@ -14,5 +14,26 @@
  * limitations under the License.
  */
 
-export * from "./loggerFactory";
-export * from "./loggerModule";
+import { inspect } from "util";
+
+/*
+ * Returns a string representation of object that is intended for debugging.
+ * */
+export const debugObjectSerializer = (
+  debugData: Record<string, unknown>,
+): Record<string, unknown> => {
+  const _debugData: Record<string, unknown> = {};
+
+  for (const k of Object.keys(debugData)) {
+    const value = debugData[k];
+
+    _debugData[k] =
+      typeof debugData[k] === "string"
+        ? value
+        : inspect(value, {
+            depth: 5,
+          });
+  }
+
+  return _debugData;
+};

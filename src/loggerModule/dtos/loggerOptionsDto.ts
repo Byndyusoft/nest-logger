@@ -14,5 +14,23 @@
  * limitations under the License.
  */
 
-export * from "./loggerFactory";
-export * from "./loggerModule";
+import { Type } from "class-transformer";
+import { IsBoolean, IsEnum, IsOptional } from "class-validator";
+
+import { LogLevel } from "../../loggerFactory";
+
+import { LoggerBaseOptionsDto } from "./loggerBaseOptionsDto";
+
+export class LoggerOptionsDto {
+  @Type(() => LoggerBaseOptionsDto)
+  @IsOptional()
+  public readonly base?: LoggerBaseOptionsDto;
+
+  @IsBoolean()
+  @IsOptional()
+  public readonly pretty?: boolean;
+
+  @IsEnum(LogLevel)
+  @IsOptional()
+  public readonly level?: LogLevel;
+}
