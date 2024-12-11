@@ -444,7 +444,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:17.3.0"
     "@nestjs/common": "npm:10.4.11"
     "@types/express": "npm:5.0.0"
-    "@types/jest": "npm:^29.2.2"
+    "@types/jest": "npm:29.2.2"
     "@types/node": "npm:20.17.9"
     "@types/supertest": "npm:^2.0.12"
     camel-case: "npm:4.1.2"
@@ -1916,13 +1916,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.2.2":
-  version: 29.5.14
-  resolution: "@types/jest@npm:29.5.14"
+"@types/jest@npm:29.2.2":
+  version: 29.2.2
+  resolution: "@types/jest@npm:29.2.2"
   dependencies:
     expect: "npm:^29.0.0"
     pretty-format: "npm:^29.0.0"
-  checksum: 738b5aabf3e7dd8bd5448a78e4ea78029e4dfcd47d9c015ba2850cf3ff6311d69353963f97051cd5d5cbc3d4d60c5150b3b8070a83d9ff58f92e4fe31d2d38ac
+  checksum: a9e99292fda36fb3a23c62f2c4db274a3a3bf3c9033db18e1b70ab20cd1634f24851a5120d0465bdd2f0e125e21336c20ff7bc36071e1befda39cbf5300c19ba
   languageName: node
   linkType: hard
 
@@ -7137,11 +7137,11 @@ __metadata:
   linkType: hard
 
 "jsesc@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "jsesc@npm:3.0.2"
+  version: 3.1.0
+  resolution: "jsesc@npm:3.1.0"
   bin:
     jsesc: bin/jsesc
-  checksum: fcac8cfe4f8a947d8f16ff1be77c9d4c81ddc66da7798eff79a6f8bd1c39e88a4e728a14576acfa2ae06303be6684113b46f322ca40681ad204fa48908e6a86d
+  checksum: f17f61620782b48be63b90ff84428a6ac5199d5720204589bc8fc2e6682754546dae55ff6fcb55c9030f133a4ec357d019244c71b4d04a3d0cd4296f0f111c99
   languageName: node
   linkType: hard
 
