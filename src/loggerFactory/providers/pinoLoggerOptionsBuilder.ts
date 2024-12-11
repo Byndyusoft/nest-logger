@@ -21,7 +21,7 @@ import murmurhash from "murmurhash";
 import { Logger, LoggerOptions, pino } from "pino";
 import { PrettyOptions } from "pino-pretty";
 
-import { LogLevel } from "../enums";
+import { Disable, LogLevel } from "../enums";
 
 export class PinoLoggerOptionsBuilder {
   protected _base: Record<string, unknown> = {};
@@ -38,10 +38,10 @@ export class PinoLoggerOptionsBuilder {
 
   protected _serializers: NonNullable<LoggerOptions["serializers"]> = {};
 
-  public constructor(useDefaults = true) {
+  public constructor(useDefaults = true, disables: Disable[] = []) {
     if (useDefaults) {
       this.withDefaultBase();
-      this.withDefaultLogArgsTransformers();
+      this.withDefaultLogArgsTransformers(disables);
       this.withDefaultRedactPaths();
       this.withDefaultSerializers();
     }
@@ -102,7 +102,9 @@ export class PinoLoggerOptionsBuilder {
     });
   }
 
-  public withDefaultLogArgsTransformers(): PinoLoggerOptionsBuilder {
+  public withDefaultLogArgsTransformers(
+    disables: Disable[],
+  ): PinoLoggerOptionsBuilder {
     return this.withLogArgsTransformers(
       function extractObjectFromArgs(args) {
         return typeof args[0] === "object" ? args : [{}, ...args];
@@ -130,24 +132,30 @@ export class PinoLoggerOptionsBuilder {
 
         return args;
       },
-      function calculateHash(args) {
-        const [message, ...optionalParams] = args as [
-          Record<string, unknown>,
-          ...unknown[],
-        ];
+      ...(disables.includes(Disable.messageTemplateHash)
+        ? []
+        : [
+            function calculateHash(args: unknown[]) {
+              const [message, ...optionalParams] = args as [
+                Record<string, unknown>,
+                ...unknown[],
+              ];
 
-        if (message.err instanceof Error) {
-          message.errHash = murmurhash(message.err.stack ?? "").toString(16);
-        }
+              if (message.err instanceof Error) {
+                message.errHash = murmurhash(message.err.stack ?? "").toString(
+                  16,
+                );
+              }
 
-        if (optionalParams.length > 0) {
-          message.msgTemplateHash = murmurhash(
-            String(optionalParams[0]),
-          ).toString(16);
-        }
+              if (optionalParams.length > 0) {
+                message.msgTemplateHash = murmurhash(
+                  String(optionalParams[0]),
+                ).toString(16);
+              }
 
-        return [message, ...optionalParams];
-      },
+              return [message, ...optionalParams];
+            },
+          ]),
     );
   }
 

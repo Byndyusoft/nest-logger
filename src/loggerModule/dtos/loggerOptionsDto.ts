@@ -17,7 +17,7 @@
 import { Type } from "class-transformer";
 import { IsBoolean, IsEnum, IsOptional } from "class-validator";
 
-import { LogLevel } from "../../loggerFactory";
+import { Disable, LogLevel } from "../../loggerFactory";
 
 import { LoggerBaseOptionsDto } from "./loggerBaseOptionsDto";
 
@@ -33,4 +33,8 @@ export class LoggerOptionsDto {
   @IsEnum(LogLevel)
   @IsOptional()
   public readonly level?: LogLevel;
+
+  @IsEnum(Disable, { each: true })
+  @IsOptional()
+  public readonly disable?: Disable[];
 }

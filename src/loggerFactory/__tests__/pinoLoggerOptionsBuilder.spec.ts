@@ -17,7 +17,7 @@
 import { pino } from "pino";
 import { stdout } from "stdout-stderr";
 
-import { LogLevel, PinoLoggerOptionsBuilder } from "..";
+import { Disable, LogLevel, PinoLoggerOptionsBuilder } from "..";
 
 describe("PinoLoggerOptionsBuilder", () => {
   afterEach(() => {
@@ -187,5 +187,25 @@ describe("PinoLoggerOptionsBuilder", () => {
     const builder = new PinoLoggerOptionsBuilder();
 
     expect(builder.build()).toMatchSnapshot();
+  });
+
+  it("must log message without msgTemplateHash", () => {
+    const builder = new PinoLoggerOptionsBuilder(true, [
+      Disable.messageTemplateHash,
+    ]);
+
+    stdout.start();
+    pino(builder.build()).info("hello %s", "world");
+    stdout.stop();
+    expect(JSON.parse(stdout.output)).toMatchSnapshot();
+  });
+
+  it("must log message if message is undefined", () => {
+    const builder = new PinoLoggerOptionsBuilder();
+
+    stdout.start();
+    pino(builder.build()).info(undefined, undefined, undefined, "test");
+    stdout.stop();
+    expect(JSON.parse(stdout.output)).toMatchSnapshot();
   });
 });

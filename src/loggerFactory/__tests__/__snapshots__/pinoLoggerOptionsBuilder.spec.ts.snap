@@ -155,6 +155,19 @@ exports[`PinoLoggerOptionsBuilder must log message 1`] = `
 }
 `;
 
+exports[`PinoLoggerOptionsBuilder must log message if message is undefined 1`] = `
+{
+  "env": "test",
+  "hostname": "host",
+  "level": "info",
+  "msgTemplateHash": "3fb211a9",
+  "name": "name",
+  "pid": 123456,
+  "time": "2016-04-05T17:02:19.796Z",
+  "version": "version",
+}
+`;
+
 exports[`PinoLoggerOptionsBuilder must log message with args 1`] = `
 {
   "env": "test",
@@ -162,6 +175,19 @@ exports[`PinoLoggerOptionsBuilder must log message with args 1`] = `
   "level": "info",
   "msg": "hello world",
   "msgTemplateHash": "3504eb44",
+  "name": "name",
+  "pid": 123456,
+  "time": "2016-04-05T17:02:19.796Z",
+  "version": "version",
+}
+`;
+
+exports[`PinoLoggerOptionsBuilder must log message without msgTemplateHash 1`] = `
+{
+  "env": "test",
+  "hostname": "host",
+  "level": "info",
+  "msg": "hello world",
   "name": "name",
   "pid": 123456,
   "time": "2016-04-05T17:02:19.796Z",

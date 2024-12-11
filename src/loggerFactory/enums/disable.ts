@@ -14,5 +14,6 @@
  * limitations under the License.
  */
 
-export * from "./disable";
-export * from "./logLevel";
+export enum Disable {
+  messageTemplateHash = "messageTemplateHash",
+}

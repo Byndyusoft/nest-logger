@@ -52,7 +52,7 @@ app.useGlobalInterceptors(new LoggerErrorInterceptor());
 #### Register module LoggerModule
 
 ```typescript
-import { LoggerModule, LogLevel } from "@byndyusoft/nest-logger";
+import { LoggerModule, LogLevel, Disable } from "@byndyusoft/nest-logger";
 
 @Module({
   imports: [
@@ -64,6 +64,7 @@ import { LoggerModule, LogLevel } from "@byndyusoft/nest-logger";
       },
       level: LogLevel.info,
       pretty: true,
+      disable: [Disable.messageTemplateHash],
     }),
   ],
 })
@@ -89,6 +90,7 @@ import { PackageJsonDto } from "./packageJson";
         },
         level: configDto.logger.level,
         pretty: configDto.logger.pretty,
+        disable: [Disable.messageTemplateHash]
       })
     }),
   ],

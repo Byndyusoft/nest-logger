@@ -67,7 +67,10 @@ export class LoggerModule {
   }
 
   private static getPinoOptions(loggerOptions: LoggerOptionsDto): PinoOptions {
-    const pinoLoggerOptions = new PinoLoggerOptionsBuilder();
+    const pinoLoggerOptions = new PinoLoggerOptionsBuilder(
+      true,
+      loggerOptions.disable,
+    );
     if (loggerOptions.base) {
       pinoLoggerOptions.withBase({
         name: loggerOptions.base.name,
