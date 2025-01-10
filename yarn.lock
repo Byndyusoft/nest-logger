@@ -465,6 +465,7 @@ __metadata:
     pinst: "npm:3.0.0"
     prettier: "npm:3.3.2"
     prettier-plugin-packagejson: "npm:2.2.15"
+    reflect-metadata: "npm:^0.2.2"
     rxjs: "npm:7.8.0"
     semantic-release: "npm:19.0.5"
     stdout-stderr: "npm:^0.1.13"
@@ -9827,6 +9828,13 @@ __metadata:
   dependencies:
     esprima: "npm:~4.0.0"
   checksum: 1278b73beed9164dc01f9f1b83349e6492b2fd5811bc58d644f6850d526135eb3dce08e9d468fa6f1475b1428a732da003dc8b5972b9eca218dcdc75526b6b77
+  languageName: node
+  linkType: hard
+
+"reflect-metadata@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "reflect-metadata@npm:0.2.2"
+  checksum: d1757ffab9e1b55f7858501c663774c7b7b3abe313e24a25f4ae3caf63e79142e5fcff4fdc04daecbd74fd83d03732c916139d23f0f3838296ba933300208746
   languageName: node
   linkType: hard
 

@@ -24,7 +24,7 @@ import {
   PinoHttpLoggerOptionsBuilder,
   PinoLoggerFactory,
   PinoLoggerOptionsBuilder,
-} from "..";
+} from "../../src";
 
 function createExpressApp(httpLogger: HttpLogger): Express {
   const app = express();

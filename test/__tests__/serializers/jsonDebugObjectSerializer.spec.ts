@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { jsonDebugObjectSerializer } from "../..";
+import { jsonDebugObjectSerializer } from "../../../src";
 
 describe("jsonDebugObjectSerializer::", () => {
   describe("when value is object", () => {

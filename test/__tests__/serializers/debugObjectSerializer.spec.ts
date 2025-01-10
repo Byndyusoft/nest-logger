@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { debugObjectSerializer } from "../..";
+import { debugObjectSerializer } from "../../../src";
 
 describe("debugObjectSerializer::", () => {
   describe("when value is object", () => {

@@ -19,7 +19,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { Span } from "opentracing";
 import { AutoLoggingOptions } from "pino-http";
 
-import { PinoHttpLoggerOptionsBuilder, PinoLoggerFactory } from "..";
+import { PinoHttpLoggerOptionsBuilder, PinoLoggerFactory } from "../../src";
 
 describe("PinoHttpLoggerOptionsBuilder", () => {
   it("must build options with defaults", () => {
