@@ -41,8 +41,8 @@
     "prepare": "yarn build",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
-    "test": "jest",
-    "test:cov": "jest --coverage"
+    "test": "jest -u",
+    "test:cov": "jest --coverage -u"
   },
   "jest": {
     "collectCoverageFrom": [
