@@ -16,7 +16,7 @@
 
 import { stdout } from "stdout-stderr";
 
-import { PinoLoggerFactory, PinoLoggerOptionsBuilder } from "../../src";
+import { PinoLoggerFactory, PinoLoggerOptionsBuilder } from "../../../src";
 
 describe("PinoLoggerFactory", () => {
   it("must build pino with custom options", () => {

@@ -17,7 +17,7 @@
 import { pino } from "pino";
 import { stdout } from "stdout-stderr";
 
-import { Disable, LogLevel, PinoLoggerOptionsBuilder } from "../../src";
+import { Disable, LogLevel, PinoLoggerOptionsBuilder } from "../../../src";
 
 describe("PinoLoggerOptionsBuilder", () => {
   afterEach(() => {
